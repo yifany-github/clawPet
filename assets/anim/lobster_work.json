@@ -1,0 +1,9 @@
+{
+  "name": "lobster_work",
+  "fps": 10,
+  "loop": true,
+  "frames": [
+    "pet/work/lobster_work_01.png",
+    "pet/work/lobster_work_02.png"
+  ]
+}

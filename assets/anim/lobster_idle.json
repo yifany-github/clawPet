@@ -1,0 +1,9 @@
+{
+  "name": "lobster_idle",
+  "fps": 8,
+  "loop": true,
+  "frames": [
+    "pet/idle/lobster_idle_01.png",
+    "pet/idle/lobster_idle_02.png"
+  ]
+}

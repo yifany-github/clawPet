@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClawPet Y2K Widget Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="widget-wrapper state-idle" id="widget" aria-live="polite">
+        <div class="keychain-assembly" aria-hidden="true">
+          <div class="plastic-loop"></div>
+          <div class="metal-ring"></div>
+        </div>
+
+        <div class="shell">
+          <div class="internals" aria-hidden="true">
+            <div class="pcb">
+              <div class="chip chip-1"></div>
+              <div class="chip chip-2"></div>
+            </div>
+            <div class="battery"></div>
+            <div class="ribbon"></div>
+          </div>
+
+          <div class="screw screw-1"></div>
+          <div class="screw screw-2"></div>
+          <div class="screw screw-3"></div>
+          <div class="screw screw-4"></div>
+
+          <div class="speaker-grill" aria-hidden="true"></div>
+
+          <div class="screen-assembly">
+            <div class="screen-outer-bezel">
+              <div class="screen-inner-bezel">
+                <div class="lcd-display">
+                  <div class="lcd-content">
+                    <header class="lcd-hud">
+                      <div class="hud-hearts" id="hud-hearts" aria-label="Pet mood hearts"></div>
+                      <div class="hud-icons">
+                        <div class="hud-icon-box" id="online-indicator" title="Bridge connection"></div>
+                        <div class="hud-icon-box" id="agent-indicator" title="Agent state"></div>
+                      </div>
+                    </header>
+
+                    <div class="pet-stage">
+                      <div class="pet-sprite" id="pet-sprite" aria-hidden="true"></div>
+                      <div class="poop-sprite" id="poop-sprite" aria-hidden="true"></div>
+                    </div>
+
+                    <footer class="status-ribbon" id="status-ribbon">Booting bridge...</footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls-area">
+            <button class="d-pad-container" id="refresh-button" aria-label="Refresh status from bridge" title="Refresh">
+              <span class="d-pad">
+                <span class="d-pad-bump bump-n"></span>
+                <span class="d-pad-bump bump-s"></span>
+                <span class="d-pad-bump bump-e"></span>
+                <span class="d-pad-bump bump-w"></span>
+              </span>
+            </button>
+
+            <div class="action-buttons">
+              <button class="btn-action btn-a" id="feed-button" aria-label="Feed pet" title="Feed">
+                <span class="btn-inner">A</span>
+              </button>
+              <button class="btn-action btn-b" id="pat-button" aria-label="Pat pet" title="Pat">
+                <span class="btn-inner">B</span>
+              </button>
+              <button class="btn-action btn-c" id="bubble-button" aria-label="Toggle summary bubble" title="Toggle Bubble">
+                <span class="btn-inner">C</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="openclaw-port" aria-hidden="true">
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+            <div class="pin"></div>
+          </div>
+
+          <div class="jewel-heart" aria-hidden="true"></div>
+          <div class="jewel-heart-highlight" aria-hidden="true"></div>
+          <div class="jewel-star" aria-hidden="true"></div>
+          <div class="twinkle" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <aside class="debug-panel" id="debug-panel">
+        <h1>ClawPet Debug</h1>
+        <p><strong>Bridge:</strong> <span id="bridge-url"></span></p>
+        <p><strong>OpenClaw:</strong> <span id="openclaw-state">offline</span></p>
+        <p><strong>Tool:</strong> <span id="tool-name">-</span></p>
+        <p><strong>Pet:</strong> <span id="pet-stats">-</span></p>
+        <p><strong>Last update:</strong> <span id="updated-at">-</span></p>
+      </aside>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

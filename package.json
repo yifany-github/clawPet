@@ -1,0 +1,20 @@
+{
+  "name": "clawpet",
+  "private": true,
+  "version": "0.1.0",
+  "description": "OpenClaw desktop pet companion monorepo",
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:bridge": "npm run build:deps && npm run dev --workspace @clawpet/openclaw-bridge",
+    "build:deps": "npm run build --workspace @clawpet/shared-types && npm run build --workspace @clawpet/pet-state-engine",
+    "build": "npm run build:deps && npm run build --workspace @clawpet/openclaw-bridge",
+    "test": "npm run build --workspace @clawpet/shared-types && npm run test --workspace @clawpet/pet-state-engine",
+    "typecheck": "npm run build:deps && npm run typecheck --workspace @clawpet/openclaw-bridge"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

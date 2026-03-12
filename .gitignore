@@ -1,0 +1,25 @@
+# Node
+node_modules/
+dist/
+.npm/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Xcode/Swift
+.build/
+DerivedData/
+*.xcodeproj/
+*.xcworkspace/
+
+# Expo / RN
+.expo/
+.expo-shared/
