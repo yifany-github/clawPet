@@ -749,3 +749,17 @@ body {
     animation: none !important;
   }
 }
+
+body.compact-mode .debug-panel {
+  display: none;
+}
+
+body.compact-mode .page-shell {
+  min-height: 100vh;
+  padding: 0;
+  gap: 0;
+}
+
+body.compact-mode .widget-wrapper {
+  margin-top: 16px;
+}

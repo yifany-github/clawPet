@@ -1,0 +1,264 @@
+<html vid="0"><head vid="1">
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="2"></script>
+    <style vid="3">
+        @keyframes spin {
+            from { transform: translate(40px,40px) rotate(0deg); }
+            to { transform: translate(40px,40px) rotate(360deg); }
+        }
+
+        .gear-spin {
+            animation: spin 4s linear infinite;
+        }
+
+        .gear-active:active {
+            animation-duration: 0.8s;
+        }
+        @keyframes spin {
+            from { transform: translate(40px,40px) rotate(0deg); }
+            to { transform: translate(40px,40px) rotate(360deg); }
+        }
+
+        .gear-spin {
+            animation: spin 4s linear infinite;
+        }
+
+        .gear-active:active {
+            animation-duration: 0.8s;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        .lcd-bg {
+            background-color: #9ea786;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 4px 4px;
+        }
+
+        .pixel-font {
+            font-family: 'VT323', monospace;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+        }
+
+        
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            z-index: 20;
+            background-size: 100% 4px;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        
+        .glare::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 45%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+            border-radius: 50% 50% 10% 10%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        
+        @keyframes squish {
+            0%, 100% { transform: scale(1, 1) translateY(0); }
+            50% { transform: scale(1.1, 0.8) translateY(4px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .pet-animate {
+            animation: float 2s ease-in-out infinite, squish 2s ease-in-out infinite;
+        }
+
+        
+        .plastic-body {
+            background: radial-gradient(circle at 30% 30%, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+            box-shadow: 
+                inset -10px -10px 20px rgba(0,0,0,0.2),
+                inset 10px 10px 20px rgba(255,255,255,0.4),
+                15px 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .plastic-button {
+            box-shadow: 
+                inset 2px 2px 5px rgba(255,255,255,0.4),
+                inset -2px -2px 5px rgba(0,0,0,0.2),
+                2px 2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+    <script vid="4">
+        let gearRotation = -15;
+        let isHoveringGear = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const gearContainer = document.getElementById('gear-container');
+            const gearRotator = document.getElementById('gear-rotator');
+            
+            gearContainer.addEventListener('mouseenter', () => isHoveringGear = true);
+            gearContainer.addEventListener('mouseleave', () => isHoveringGear = false);
+            
+            window.addEventListener('wheel', (e) => {
+                if (isHoveringGear) {
+                    e.preventDefault();
+                    gearRotation += e.deltaY * 0.4;
+                    gearRotator.style.transform = `translate(40px,40px) rotate(${gearRotation}deg)`;
+                }
+            });
+        });
+    </script>
+</head>
+<body class="w-full h-screen bg-slate-100 flex items-center justify-center overflow-hidden selection:bg-green-200" vid="5">
+
+    
+    <div class="absolute w-[280px] h-[28px] bg-black/20 blur-xl rounded-full translate-y-[160px] translate-x-[10px]" vid="6"></div>
+
+    
+    <div class="relative" vid="7">
+
+        
+        <button class="absolute top-14 -left-4 w-6 h-16 bg-yellow-400 rounded-l-lg border-y-2 border-l-2 border-yellow-600 plastic-button z-0 active:translate-x-1 active:shadow-inner transition-transform duration-75 group" vid="8">
+            <div class="w-full h-full flex items-center justify-center opacity-0 group-active:opacity-100 transition-opacity" vid="9">
+                <div class="w-1 h-8 bg-black/10 rounded-full" vid="10"></div>
+            </div>
+        </button>
+
+        
+        <button class="absolute -top-4 left-16 w-16 h-6 bg-yellow-400 rounded-t-lg border-x-2 border-t-2 border-yellow-600 plastic-button z-0 active:translate-y-1 active:shadow-inner transition-transform duration-75 group" vid="11">
+            <div class="w-full h-full flex items-center justify-center opacity-0 group-active:opacity-100 transition-opacity" vid="12">
+                <div class="w-8 h-1 bg-black/10 rounded-full" vid="13"></div>
+            </div>
+        </button>
+
+        
+        <div id="gear-container" class="absolute top-8 -right-14 w-40 h-40 z-0 active:scale-[0.95] transition-transform duration-75 cursor-pointer" vid="14">
+            <div class="relative w-full h-full flex items-center justify-center" vid="15">
+                <svg viewBox="0 0 80 80" class="w-full h-full drop-shadow-[2px_2px_4px_rgba(0,0,0,0.4)]" vid="16">
+                    <defs vid="17">
+                        <linearGradient id="gearGradient" x1="0%" y1="0%" x2="100%" y2="100%" vid="18">
+                            <stop offset="0%" style="stop-color:#5a5a5a" vid="19"></stop>
+                            <stop offset="50%" style="stop-color:#2a2a2a" vid="20"></stop>
+                            <stop offset="100%" style="stop-color:#1a1a1a" vid="21"></stop>
+                        </linearGradient>
+                        <linearGradient id="toothGradient" x1="0%" y1="0%" x2="100%" y2="100%" vid="22">
+                            <stop offset="0%" style="stop-color:#6a6a6a" vid="23"></stop>
+                            <stop offset="50%" style="stop-color:#3a3a3a" vid="24"></stop>
+                            <stop offset="100%" style="stop-color:#1a1a1a" vid="25"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="gear-rotator" transform="translate(40,40) rotate(-15)" class="transition-transform duration-75 active:scale-95 cursor-pointer" vid="26">
+                        <g vid="27">
+                            <circle cx="0" cy="0" r="18" fill="url(#gearGradient)" stroke="#1a1a1a" stroke-width="1" vid="28"></circle>
+                            <circle cx="0" cy="0" r="12" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="1" vid="29"></circle>
+                            <circle cx="0" cy="0" r="6" fill="#1a1a1a" vid="30"></circle>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" fill="url(#toothGradient)" vid="31"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(45)" fill="url(#toothGradient)" vid="32"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(90)" fill="url(#toothGradient)" vid="33"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(135)" fill="url(#toothGradient)" vid="34"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(180)" fill="url(#toothGradient)" vid="35"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(225)" fill="url(#toothGradient)" vid="36"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(270)" fill="url(#toothGradient)" vid="37"></rect>
+                            <rect x="-2" y="-14" width="4" height="8" rx="0.5" transform="rotate(315)" fill="url(#toothGradient)" vid="38"></rect>
+                        </g>
+                    </g>
+                </svg>
+                <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 60%)" vid="39"></div>
+            </div>
+        </div>
+
+        
+        <div class="relative w-[320px] h-[320px] plastic-body rounded-[50%] rounded-tl-[56px] border-[3px] border-green-700 flex items-center justify-center z-10" vid="40">
+
+            
+            <div class="absolute top-6 left-6 w-12 h-12 bg-zinc-800 rounded-full border-[3px] border-zinc-900 shadow-[inset_0_4px_8px_rgba(0,0,0,0.8),_0_2px_4px_rgba(0,0,0,0.2)] flex items-center justify-center p-1" vid="41">
+                <div class="w-full h-full bg-[#9ea786] rounded-full flex items-center justify-center overflow-hidden" vid="42">
+                    <div class="w-full h-full relative overflow-hidden" vid="43">
+                    <div class="w-full h-full flex items-center justify-center text-4xl" vid="44">😊</div>
+                    <div class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)] pointer-events-none" vid="45"></div>
+                    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:3px_3px] pointer-events-none" vid="46"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#9ea786]/40 via-transparent to-[#9ea786]/30 pointer-events-none" vid="47"></div>
+                    <div class="absolute inset-0 opacity-30 pointer-events-none" style="background: linear-gradient(150deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);" vid="48"></div>
+                </div>
+                </div>
+            </div>
+
+            
+            <div class="w-[242px] h-[242px] bg-zinc-800 rounded-full border-[10px] border-zinc-900 shadow-[inset_0_8px_20px_rgba(0,0,0,0.8),_0_4px_10px_rgba(0,0,0,0.2)] flex items-center justify-center relative" vid="49">
+                
+                
+                <div class="relative w-full h-full rounded-full lcd-bg scanlines glare overflow-hidden flex flex-col items-center justify-between p-3.5 border-4 border-zinc-700/50" vid="50">
+                    
+                    
+                    <div class="w-full flex justify-between px-6 pt-1 z-10" vid="51">
+                        
+                        <div class="w-4 h-4 bg-black/70 flex flex-col justify-end p-[1px]" vid="52">
+                            <div class="w-full h-1/2 bg-[#9ea786] rounded-t-full" vid="53"></div>
+                        </div>
+                        
+                        <div class="w-4 h-4 bg-black/70 rounded-full relative" vid="54">
+                             <div class="absolute bottom-[-2px] left-1 w-2 h-1.5 bg-black/70" vid="55"></div>
+                        </div>
+                        
+                        <div class="w-4 h-4 bg-black/70 rounded-sm flex items-center justify-center" vid="56">
+                            <div class="w-2 h-2 bg-[#9ea786] rounded-full" vid="57"></div>
+                        </div>
+                        
+                        <div class="w-4 h-4 bg-black/70 rounded-sm flex items-center justify-center" vid="58">
+                            <div class="w-3 h-1 bg-[#9ea786]" vid="59"></div>
+                            <div class="absolute w-1 h-3 bg-[#9ea786]" vid="60"></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="relative z-10 flex-1 flex items-center justify-center" vid="61">
+                        <div class="pet-animate relative" vid="62">
+                            
+                            <div class="w-16 h-14 bg-black/80 rounded-t-[1.5rem] rounded-b-lg relative" vid="63">
+                                
+                                <div class="absolute top-4 left-3 w-3 h-3 bg-[#9ea786] rounded-sm" vid="64">
+                                    <div class="w-1 h-1 bg-black/80 mt-1 ml-1" vid="65"></div>
+                                </div>
+                                <div class="absolute top-4 right-3 w-3 h-3 bg-[#9ea786] rounded-sm" vid="66">
+                                    <div class="w-1 h-1 bg-black/80 mt-1 ml-1" vid="67"></div>
+                                </div>
+                                
+                                <div class="absolute top-8 left-1/2 -translate-x-1/2 w-4 h-2 bg-[#9ea786] rounded-b-full" vid="68"></div>
+                                
+                                
+                                <div class="absolute top-8 -left-2 w-2 h-3 bg-black/80 rounded-l-full rotate-12" vid="69"></div>
+                                <div class="absolute top-8 -right-2 w-2 h-3 bg-black/80 rounded-r-full -rotate-12" vid="70"></div>
+                            </div>
+                            
+                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-2 bg-black/10 rounded-full blur-[1px]" vid="71"></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="w-full flex justify-center pb-2 z-10" vid="72">
+                        <span class="pixel-font text-xl text-black/80 tracking-widest font-bold" vid="73">LVL 01</span>
+                    </div>
+
+                </div>
+            </div>
+
+            
+
+        </div>
+    </div>
+
+
+</body></html>

@@ -35,6 +35,7 @@ docs/                     # 架构/API/开发计划/实施文档
   - `WS /ws`
   - OpenClaw CLI 轮询适配器（`openclaw status --all --json`）
 - `apps/mac-pet-widget/web-widget-prototype`：可联调 bridge 的 Y2K UI 原型（状态映射 + WS + 按钮交互）
+- `apps/mac-pet-widget`：可运行的 macOS 桌面挂件（SwiftUI + AppKit 浮窗，原生绘制 UI）
 
 ## 快速开始
 

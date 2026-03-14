@@ -24,14 +24,33 @@ const els = {
   refreshButton: document.querySelector("#refresh-button"),
   feedButton: document.querySelector("#feed-button"),
   patButton: document.querySelector("#pat-button"),
-  bubbleButton: document.querySelector("#bubble-button")
+  bubbleButton: document.querySelector("#bubble-button"),
+  debugPanel: document.querySelector("#debug-panel")
 };
 
 const urlParams = new URLSearchParams(window.location.search);
-const bridgeParam = urlParams.get("bridge");
+const runtimeConfig = (typeof window !== "undefined" && window.__CLAWPET_CONFIG) ? window.__CLAWPET_CONFIG : {};
+const bridgeParam = urlParams.get("bridge") || runtimeConfig.bridge || null;
+const compactMode = urlParams.get("compact") === "1" || runtimeConfig.compact === true;
+const desktopMode = urlParams.get("desktop") === "1" || runtimeConfig.desktop === true;
 const bridgeBaseUrl = (bridgeParam || localStorage.getItem("clawpet_bridge") || DEFAULT_BRIDGE).replace(/\/$/, "");
+
+if (compactMode) {
+  document.body.classList.add("compact-mode");
+}
+
+if (desktopMode) {
+  document.body.classList.add("desktop-mode");
+}
+
+if (compactMode && els.debugPanel) {
+  els.debugPanel.style.display = "none";
+}
+
 localStorage.setItem("clawpet_bridge", bridgeBaseUrl);
-els.bridgeUrl.textContent = bridgeBaseUrl;
+if (els.bridgeUrl) {
+  els.bridgeUrl.textContent = bridgeBaseUrl;
+}
 
 let ws;
 let reconnectTimer;
